@@ -1,0 +1,9 @@
+{
+  "carpet.rule.creativeFlight.name": "允许生存模式使用创造飞行",
+  "carpet.rule.creativeFlight.desc": "创造飞行",
+  "carpet.rule.creativeFlightFuelBase.name": "烟花燃料系数",
+  "carpet.rule.creativeFlightFuelBase.desc": "Duration N 烟花可提供 fuelBase × (2 + N) tick 飞行",
+  "carpet.rule.creativeFlightFallHasDamage.name": "创造飞行掉落是否有伤害",
+  "carpet.rule.creativeFlightFallHasDamage.desc": "创造飞行掉落是否有伤害",
+  "carpet.category.XTS": "XTS 扩展"
+}

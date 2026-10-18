@@ -1,0 +1,32 @@
+{
+	"schemaVersion": 1,
+	"id": "carpet-xts-addition",
+	"version": "${version}",
+	"name": "Carpet XTS Addition",
+	"description": "",
+	"authors": [
+		"XiaotianMC"
+	],
+	"contact": {
+		"homepage": "https://xts.gcte.cn",
+		"sources": "https://github.com/XiaotianNB666/Carpet-XTS-Addition"
+	},
+	"license": "MIT",
+	"icon": "assets/carpet-xts-addition/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+          "cn.gcte.xts.CarpetXTSAddition"
+		]
+	},
+	"mixins": [
+      "xts.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~1.21.10",
+		"java": ">=21",
+		"fabric-api": "*",
+        "carpet": "*"
+	}
+}

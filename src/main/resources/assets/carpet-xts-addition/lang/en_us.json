@@ -1,0 +1,9 @@
+{
+  "carpet.rule.creativeFlight.name": "Creative Flight",
+  "carpet.rule.creativeFlight.desc": "Allow survival mode creative flight",
+  "carpet.rule.creativeFlightFuelBase.name": "Creative Flight Fuel Base",
+  "carpet.rule.creativeFlightFuelBase.desc": "Duration N firework gives fuelBase * (2 + N) ticks of flight",
+  "carpet.rule.creativeFlightFallHasDamage.name": "Creative Fight Fall Has Damage",
+  "carpet.rule.creativeFlightFallHasDamage.desc": "Creative Fight Fall Has Damage",
+  "carpet.category.XTS": "XTS"
+}
