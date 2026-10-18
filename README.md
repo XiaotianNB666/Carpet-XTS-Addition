@@ -1,9 +1,8 @@
-# Carpet Region Addition
+# Carpet XTS Addition
 
-## Setup
-
-For setup instructions, please see the [Fabric Documentation page](https://docs.fabricmc.net/develop/getting-started/creating-a-project#setting-up) related to the IDE that you are using.
+## Introduction
+A Carpet Addition could be used to XTS Server and even more mc server, helping ops control their server easier and provide players with useful features.
 
 ## License
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+This template is available under the MIT license. Feel free to learn from it and incorporate it in your own projects.
