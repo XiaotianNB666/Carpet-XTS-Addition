@@ -13,5 +13,6 @@
   "xts.player.control.error.already_swapped": "%s is already in a swap, please release first.",
   "xts.player.control.error.not_swapped": "Not swapping with anyone.",
   "xts.player.control.error.original_missing": "Original state for initiator is missing.",
-  "xts.player.control.partner_offline_restored": "Swap partner went offline, your original identity has been restored."
+  "xts.player.control.partner_offline_restored": "Swap partner went offline, your original identity has been restored.",
+  "xts.player.control.error.swap_failed": "Swap Failed: %s"
 }

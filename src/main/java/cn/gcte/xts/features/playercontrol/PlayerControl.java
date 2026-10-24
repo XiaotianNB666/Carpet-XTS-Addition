@@ -7,6 +7,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -26,15 +27,22 @@ public class PlayerControl {
                         literal("control")
                                 .requires(source -> XTSRules.enabledFakePlayerControl() && source.hasPermission(XTSRules.fakePlayerControlCommandLevel()))
                                 .executes(commandContext -> {
-                                    String playerName = commandContext.getArgument("player", String.class);
-                                    var player = Objects.requireNonNull(commandContext.getSource().getServer().getPlayerList().getPlayer(playerName));
-                                    var result = swapManager.swap(commandContext.getSource().getPlayerOrException(), player);
-                                    return result.success() ? 1 : 0;
+                                    try {
+                                        String playerName = commandContext.getArgument("player", String.class);
+                                        var player = Objects.requireNonNull(commandContext.getSource().getServer().getPlayerList().getPlayer(playerName));
+                                        var result = swapManager.swap(commandContext.getSource().getPlayerOrException(), player);
+                                        return result.success() ? 1 : 0;
+                                    } catch (Exception e) {
+                                        //send feed back
+                                        commandContext.getSource().sendFailure(Component.translatableWithFallback("xts.player.control.error.swap_failed", "Swap failed: %s", e.getMessage()));
+                                    }
+                                    return 0;
                                 })
                 ).then(literal("release"))
-                        .requires(source -> XTSRules.enabledFakePlayerControl())
-                        .requires(source -> source.hasPermission(XTSRules.fakePlayerControlCommandLevel()))
-                        .executes(commandContext -> {
+                        .requires(source -> XTSRules.enabledFakePlayerControl()
+                                && source.hasPermission(XTSRules.fakePlayerControlCommandLevel())
+                                && ! CarpetXTSAddition.TempSharedConstants.releaseCommandAlwaysDisabled
+                        ).executes(commandContext -> {
                             var result = swapManager.release(commandContext.getSource().getPlayerOrException(), commandContext.getSource().getServer());
                             return result.success() ? 1 : 0;
                         })
