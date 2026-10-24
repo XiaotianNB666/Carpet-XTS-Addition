@@ -1,13 +1,5 @@
 # Carpet XTS Addition
 
-A [Fabric Carpet](https://github.com/gnembon/fabric-carpet) extension originally built for the **XTS Server**, and useful for any Minecraft server that wants a tighter leash on ops *and* a few genuinely handy player-side features.
-
-Defaults are fully vanilla. Nothing changes until you flip a rule.
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
-![Category](https://img.shields.io/badge/carpet%20category-XTS-blue)
-![Surface](https://img.shields.io/badge/surface-server%20side-lightgrey)
-
 ---
 ## 简介 / Introduction
 
