@@ -5,5 +5,13 @@
   "carpet.rule.creativeFlightFuelBase.desc": "Duration N firework gives fuelBase * (2 + N) ticks of flight",
   "carpet.rule.creativeFlightFallHasDamage.name": "Creative Fight Fall Has Damage",
   "carpet.rule.creativeFlightFallHasDamage.desc": "Creative Fight Fall Has Damage",
-  "carpet.category.XTS": "XTS"
+  "carpet.rule.fakePlayerControl.desc": "Allow players to control fake players",
+  "carpet.rule.fakePlayerControl.name": "Fake Player Control",
+  "carpet.category.XTS": "XTS",
+
+  "xts.player.control.error.self_swap": "Can't swap with yourself!",
+  "xts.player.control.error.already_swapped": "%s is already in a swap, please release first.",
+  "xts.player.control.error.not_swapped": "Not swapping with anyone.",
+  "xts.player.control.error.original_missing": "Original state for initiator is missing.",
+  "xts.player.control.partner_offline_restored": "Swap partner went offline, your original identity has been restored."
 }

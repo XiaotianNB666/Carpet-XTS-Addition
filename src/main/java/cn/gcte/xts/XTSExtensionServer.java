@@ -4,7 +4,11 @@ import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import carpet.api.settings.SettingsManager;
 import carpet.utils.Translations;
+import cn.gcte.xts.features.playercontrol.PlayerControl;
 import cn.gcte.xts.rules.XTSRuleRegistrar;
+import com.mojang.brigadier.CommandDispatcher;
+import net.minecraft.commands.CommandBuildContext;
+import net.minecraft.commands.CommandSourceStack;
 
 import java.util.Map;
 
@@ -32,10 +36,17 @@ public class XTSExtensionServer implements CarpetExtension {
     @Override
     public void onGameStarted() {
         XTSRuleRegistrar.register();
+
+        PlayerControl.registerObserver();
     }
 
     @Override
     public Map<String, String> canHasTranslations(String lang) {
         return Translations.getTranslationFromResourcePath("assets/carpet-xts-addition/lang/" + lang + ".json");
+    }
+
+    @Override
+    public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, final CommandBuildContext commandBuildContext) {
+        PlayerControl.registerCommand(dispatcher, commandBuildContext);
     }
 }

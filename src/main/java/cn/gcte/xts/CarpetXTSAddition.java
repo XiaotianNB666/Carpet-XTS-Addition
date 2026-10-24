@@ -14,4 +14,8 @@ public class CarpetXTSAddition implements ModInitializer {
 	public void onInitialize() {
         XTSExtensionServer.register();
 	}
+
+    public static class TempSharedConstants {
+        public static final boolean selfSwapIsRelease = true;
+    }
 }

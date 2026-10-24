@@ -3,8 +3,10 @@
   "package": "cn.gcte.xts.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "PlayerMixin",
-    "ServerPlayerMixin"
+    "creativefight.ServerPlayerMixin",
+    "playercontrol.PlayerDisconnectMixin",
+    "playercontrol.PlayerAccessor",
+    "playercontrol.TrackedEntityAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

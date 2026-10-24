@@ -22,6 +22,7 @@
 	"mixins": [
       "xts.mixins.json"
 	],
+    "accessWidener": "xts.accesswidener",
 	"depends": {
 		"fabricloader": ">=0.19.3",
 		"minecraft": "~1.21.10",

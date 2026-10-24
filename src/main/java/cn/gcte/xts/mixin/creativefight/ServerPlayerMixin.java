@@ -1,6 +1,6 @@
-package cn.gcte.xts.mixin;
+package cn.gcte.xts.mixin.creativefight;
 
-import carpet.script.annotation.Locator;
+import cn.gcte.xts.features.creativefight.XTSFuelAccess;
 import cn.gcte.xts.rules.XTSRules;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ServerPlayer.class)
-public abstract class ServerPlayerMixin {
+public abstract class ServerPlayerMixin implements XTSFuelAccess {
 
     @Shadow public abstract void onUpdateAbilities();
 
@@ -128,4 +128,15 @@ public abstract class ServerPlayerMixin {
         chest.hurtWithoutBreaking(1, p);
         return true;
     }
+
+    @Unique
+    public int xts$getFlightFuel() {
+        return xts$flightFuel;
+    }
+
+    @Unique
+    public void xts$setFlightFuel(int fuel) {
+        xts$flightFuel = fuel;
+    }
+
 }
