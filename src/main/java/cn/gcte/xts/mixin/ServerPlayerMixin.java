@@ -1,14 +1,15 @@
 package cn.gcte.xts.mixin;
 
+import carpet.script.annotation.Locator;
 import cn.gcte.xts.rules.XTSRules;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.FireworksComponent;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.Fireworks;
+import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -16,27 +17,27 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(ServerPlayerEntity.class)
+@Mixin(ServerPlayer.class)
 public abstract class ServerPlayerMixin {
 
-    @Shadow public abstract void sendAbilitiesUpdate();
+    @Shadow public abstract void onUpdateAbilities();
 
     @Unique private int xts$flightFuel = 0;
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void xts$creativeFlightWithRockets(CallbackInfo ci) {
-        ServerPlayerEntity self = (ServerPlayerEntity) (Object) this;
+        ServerPlayer self = (ServerPlayer) (Object) this;
 
-        if (!XTSRules.creativeFlight() || !self.interactionManager.isSurvivalLike()) {
+        if (!XTSRules.creativeFlight() || !self.gameMode.isSurvival()) {
             if (self.getAbilities().flying && !self.isCreative() && !self.isSpectator()) {
                 xts$stopFlying(self, false);
             } else {
-                self.getAbilities().allowFlying = self.isCreative() || self.isSpectator();
+                self.getAbilities().mayfly = self.isCreative() || self.isSpectator();
             }
             return;
         }
 
-        boolean hasElytra = self.getEquippedStack(EquipmentSlot.CHEST).getItem() == Items.ELYTRA;
+        boolean hasElytra = self.getItemBySlot(EquipmentSlot.CHEST).getItem() == Items.ELYTRA;
         int slot = findPlainRocketSlot(self);
 
         var applyFallDamage = XTSRules.creativeFlightFallHasDamage() && !self.isCreative() && !self.isSpectator();
@@ -45,17 +46,17 @@ public abstract class ServerPlayerMixin {
             if (self.getAbilities().flying) {
                 xts$stopFlying(self, applyFallDamage);
             } else {
-                self.getAbilities().allowFlying = false;
+                self.getAbilities().mayfly = false;
             }
             return;
         }
 
-        self.getAbilities().allowFlying = true;
+        self.getAbilities().mayfly = true;
 
         if (self.getAbilities().flying) {
             if (xts$flightFuel <= 0) {
                 if (consumeOneRocket(self, slot) && damageElytra(self)) {
-                    xts$flightFuel = boostTicksFor(self.getInventory().getStack(slot));
+                    xts$flightFuel = boostTicksFor(self.getInventory().getItem(slot));
                 } else {
                     xts$stopFlying(self, applyFallDamage);
                 }
@@ -63,32 +64,32 @@ public abstract class ServerPlayerMixin {
                 xts$flightFuel--;
             }
         } else {
-            xts$flightFuel = boostTicksFor(self.getInventory().getStack(slot));
+            xts$flightFuel = boostTicksFor(self.getInventory().getItem(slot));
         }
 
-        sendAbilitiesUpdate();
+        onUpdateAbilities();
     }
 
     @Unique
-    private void xts$stopFlying(ServerPlayerEntity p, boolean applyFall) {
+    private void xts$stopFlying(ServerPlayer p, boolean applyFall) {
         p.getAbilities().flying = false;
-        p.getAbilities().allowFlying = false;
+        p.getAbilities().mayfly = false;
 
         if (applyFall) {
-            Vec3d v = p.getVelocity();
-            if (v.y > 0) p.setVelocity(v.x, Math.min(0, v.y), v.z);
+            Vec3 v = p.getDeltaMovement();
+            if (v.y > 0) p.setDeltaMovement(v.x, Math.min(0, v.y), v.z);
         }
 
-        p.sendAbilitiesUpdate();
+        p.onUpdateAbilities();
     }
 
     @Unique
-    private int findPlainRocketSlot(ServerPlayerEntity p) {
-        PlayerInventory inv = p.getInventory();
-        for (int i = 0; i < inv.size(); i++) {
-            ItemStack s = inv.getStack(i);
+    private int findPlainRocketSlot(ServerPlayer p) {
+        Inventory inv = p.getInventory();
+        for (int i = 0; i < inv.getContainerSize(); i++) {
+            ItemStack s = inv.getItem(i);
             if (s.getItem() != Items.FIREWORK_ROCKET) continue;
-            FireworksComponent fw = s.get(DataComponentTypes.FIREWORKS);
+            Fireworks fw = s.get(DataComponents.FIREWORKS);
             if (fw == null || fw.explosions().isEmpty()) return i;
         }
         return -1;
@@ -97,7 +98,7 @@ public abstract class ServerPlayerMixin {
     @Unique
     private int rocketFlightLevel(ItemStack stack) {
         if (stack.getItem() != Items.FIREWORK_ROCKET) return -1;
-        FireworksComponent fw = stack.get(DataComponentTypes.FIREWORKS);
+        Fireworks fw = stack.get(DataComponents.FIREWORKS);
         if (fw == null) return 1;              // no component → Duration 1
         return fw.flightDuration() + 1;        // 0→1, 1→2, 2→3
     }
@@ -111,20 +112,20 @@ public abstract class ServerPlayerMixin {
     }
 
     @Unique
-    private boolean consumeOneRocket(ServerPlayerEntity p, int slot) {
-        PlayerInventory inv = p.getInventory();
-        ItemStack s = inv.getStack(slot);
+    private boolean consumeOneRocket(ServerPlayer p, int slot) {
+        Inventory inv = p.getInventory();
+        ItemStack s = inv.getItem(slot);
         if (s.isEmpty() || s.getItem() != Items.FIREWORK_ROCKET) return false;
-        s.decrement(1);
-        if (s.isEmpty()) inv.setStack(slot, ItemStack.EMPTY);
+        s.shrink(1);
+        if (s.isEmpty()) inv.setItem(slot, ItemStack.EMPTY);
         return true;
     }
 
     @Unique
-    private boolean damageElytra(ServerPlayerEntity p) {
-        ItemStack chest = p.getEquippedStack(EquipmentSlot.CHEST);
-        if (chest.getItem() != Items.ELYTRA) return false;
-        chest.damage(1, p);
+    private boolean damageElytra(ServerPlayer p) {
+        ItemStack chest = p.getItemBySlot(EquipmentSlot.CHEST);
+        if (chest.getItem() != Items.ELYTRA || chest.nextDamageWillBreak()) return false;
+        chest.hurtWithoutBreaking(1, p);
         return true;
     }
 }

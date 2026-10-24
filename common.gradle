@@ -38,7 +38,8 @@ dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     if (!unobfuscated) {
         mappings loom.layered() {
-            mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+//            mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+            officialMojangMappings()
         }
     }
     // Mixin Extras
