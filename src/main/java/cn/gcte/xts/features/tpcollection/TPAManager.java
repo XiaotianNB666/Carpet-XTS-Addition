@@ -92,7 +92,9 @@ public class TPAManager {
         cleanupExpired();
 
         Optional<Map.Entry<UUID, TPARequest>> found = requests.entrySet().stream()
-                .filter(e -> e.getValue().target == target)
+                .filter(e ->
+                        e.getValue().type() == TPAType.TPA? e.getValue().target == target : e.getValue().sender == target
+                )
                 .findFirst();
 
         if (found.isEmpty()) {
