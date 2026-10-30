@@ -1,5 +1,6 @@
 package cn.gcte.xts.features.playercontrol;
 
+import cn.gcte.xts.compat.PlayerCompat;
 import cn.gcte.xts.features.creativefight.XTSFuelAccess;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.core.BlockPos;
@@ -222,7 +223,7 @@ public class SwapSnapshot {
 
         applyRiding(player);
         if (isAsleep != null) {
-            player.startSleepInBed(isAsleep);
+            PlayerCompat.startSleepInBed(player, isAsleep);
         } else {
             player.clearSleepingPos();
             player.stopSleepInBed(true, true);

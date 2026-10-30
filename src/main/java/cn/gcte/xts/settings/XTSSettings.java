@@ -27,4 +27,10 @@ public class XTSSettings {
             options = {"0", "1", "2", "3", "4", "ops", "false"}
     )
     public static String fakePlayerControl = "false";
+
+    @Rule(
+            categories = {RuleCategory.COMMAND, XTS},
+            options = {"0", "1", "2", "3", "4", "ops", "false"}
+    )
+    public static String tpCommandCollection = "false";
 }

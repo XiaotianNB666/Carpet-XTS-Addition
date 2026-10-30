@@ -7,6 +7,8 @@
   "carpet.rule.creativeFlightFallHasDamage.desc": "Creative Fight Fall Has Damage",
   "carpet.rule.fakePlayerControl.desc": "Allow players to control fake players",
   "carpet.rule.fakePlayerControl.name": "Fake Player Control",
+  "carpet.rule.tpCommandCollection.desc": "Enable tp-related commands like /tpa",
+  "carpet.rule.tpCommandCollection.name": "TP Command Collection",
   "carpet.category.XTS": "XTS",
 
   "xts.player.control.error.self_swap": "Can't swap with yourself!",
@@ -14,5 +16,22 @@
   "xts.player.control.error.not_swapped": "Not swapping with anyone.",
   "xts.player.control.error.original_missing": "Original state for initiator is missing.",
   "xts.player.control.partner_offline_restored": "Swap partner went offline, your original identity has been restored.",
-  "xts.player.control.error.swap_failed": "Swap Failed: %s"
+  "xts.player.control.error.swap_failed": "Swap Failed: %s",
+
+  "xts.tpa.sent": "TP request sent to %s",
+  "xts.tpa.sent_to_you": "%s sent you a TPA request",
+  "xts.tpa.accepted": "TPA accepted, you teleported to %s",
+  "xts.tpa.accepted_here": "TPA accepted, %s teleported to you",
+  "xts.tpa.denied": "%s denied your TPA request",
+  "xts.tpa.denied_notify": "Denied TPA request",
+  "xts.tpa.cancelled": "Cancelled TPA request",
+  "xts.tpa.cancelled_notify": "%s cancelled their TPA request",
+  "xts.tpa.expired": "Your TPA request expired (player offline)",
+  "xts.tpa.no_request": "You have no pending TPA request",
+  "xts.tpa.no_sent": "You have no TPA request to cancel",
+  "xts.tpa.self": "You cannot send a TPA request to yourself",
+  "xts.tpa.offline": "Target player is not online",
+  "xts.tpa.already_sent": "You already sent a TPA request, please wait",
+  "xts.tpa.sender_offline": "Sender is no longer online",
+  "xts.tpa.usage": "Use /tpa accept or /tpa deny"
 }

@@ -1,4 +1,4 @@
-accessWidener v2 named
+accessWidener v1 named
 # player control
 accessible method net/minecraft/server/level/ServerPlayer addAdditionalSaveData (Lnet/minecraft/world/level/storage/ValueOutput;)V
 accessible field net/minecraft/world/food/FoodData exhaustionLevel F
