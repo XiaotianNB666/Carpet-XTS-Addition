@@ -25,23 +25,18 @@ jobs:
 
       - name: organize artifacts
         run: |
-          mkdir -p staging/versions
-          for dir in */; do
-            dir="${dir%/}"
-            if [[ ! -d "$dir/build/libs" ]]; then
-              continue
+          mkdir -p staging/versions/sources
+          find versions -maxdepth 3 -path "*/build/libs/*.jar" -type f | while read jar; do
+            fname="$(basename "$jar")"
+            if [[ "$fname" == *-sources.jar ]]; then
+              cp "$jar" "staging/versions/sources/$fname"
+            else
+              cp "$jar" "staging/versions/$fname"
             fi
-            mkdir -p "staging/versions/$dir/sources"
-            for jar in "$dir"/build/libs/*.jar; do
-              [[ -f "$jar" ]] || continue
-              fname="$(basename "$jar")"
-              if [[ "$fname" == *-sources.jar ]]; then
-                cp "$jar" "staging/versions/$dir/sources/$fname"
-              else
-                cp "$jar" "staging/versions/$dir/$fname"
-              fi
-            done
+            echo "Copied: $fname"
           done
+          echo "=== staging tree ==="
+          find staging/ -type f
 
       - name: upload artifacts
         uses: actions/upload-artifact@v7
