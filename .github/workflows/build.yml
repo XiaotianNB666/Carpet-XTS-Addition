@@ -1,8 +1,3 @@
-# Automatically build the project and run any configured tests for every push
-# and submitted pull request. This can help catch issues that only occur on
-# certain platforms or Java versions, and provides a first line of defence
-# against bad commits.
-
 name: build
 on: [pull_request, push]
 
@@ -12,22 +7,45 @@ jobs:
     steps:
       - name: checkout repository
         uses: actions/checkout@v6
+
       - name: validate gradle wrapper
         uses: gradle/actions/wrapper-validation@v6
+
       - name: setup jdk
         uses: actions/setup-java@v5
         with:
           java-version: '25'
           distribution: 'microsoft'
+
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
+
       - name: build
         run: ./gradlew build
-      - name: capture build artifacts
+
+      - name: organize artifacts
+        run: |
+          mkdir -p staging/versions
+          for dir in */; do
+            dir="${dir%/}"
+            if [[ ! -d "$dir/build/libs" ]]; then
+              continue
+            fi
+            mkdir -p "staging/versions/$dir/sources"
+            for jar in "$dir"/build/libs/*.jar; do
+              [[ -f "$jar" ]] || continue
+              fname="$(basename "$jar")"
+              if [[ "$fname" == *-sources.jar ]]; then
+                cp "$jar" "staging/versions/$dir/sources/$fname"
+              else
+                cp "$jar" "staging/versions/$dir/$fname"
+              fi
+            done
+          done
+
+      - name: upload artifacts
         uses: actions/upload-artifact@v7
         with:
           name: Artifacts
-          path: |
-            */build/libs/*.jar
-            */*/build/libs/*.jar
+          path: staging/versions/**
           if-no-files-found: warn
