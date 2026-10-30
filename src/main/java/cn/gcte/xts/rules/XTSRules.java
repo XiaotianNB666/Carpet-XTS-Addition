@@ -1,9 +1,7 @@
 package cn.gcte.xts.rules;
 
 import cn.gcte.xts.XTSExtensionServer;
-import org.apache.logging.log4j.core.util.Integers;
-
-import java.util.Objects;
+import cn.gcte.xts.compat.Permission;
 
 public class XTSRules {
     public static boolean creativeFlight() {
@@ -25,14 +23,16 @@ public class XTSRules {
 
     public static int fakePlayerControlCommandLevel() {
         String value = (String) XTSExtensionServer.settingsManager().getCarpetRule("fakePlayerControl").value();
-        if (Objects.equals(value, "ops")) {
-            return 1;
-        } else {
-            try {
-                return Math.clamp(Integers.parseInt(value), 0, 4);
-            } catch (NumberFormatException e) {
-                return 4;
-            }
-        }
+        return Permission.parsePermission(value);
+    }
+
+    public static boolean enabledTpCommandCollection() {
+        String value = (String) XTSExtensionServer.settingsManager().getCarpetRule("tpCommandCollection").value();
+        return !value.equalsIgnoreCase("false");
+    }
+
+    public static int tpCommandCollectionCommandLevel() {
+        String value = (String) XTSExtensionServer.settingsManager().getCarpetRule("tpCommandCollection").value();
+        return Permission.parsePermission(value);
     }
 }

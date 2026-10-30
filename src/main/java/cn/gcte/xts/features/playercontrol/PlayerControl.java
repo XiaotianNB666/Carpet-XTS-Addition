@@ -3,7 +3,7 @@ package cn.gcte.xts.features.playercontrol;
 import cn.gcte.xts.CarpetXTSAddition;
 import cn.gcte.xts.XTSExtensionServer;
 import cn.gcte.xts.rules.XTSRules;
-import cn.gcte.xts.util.PermissionUtil;
+import cn.gcte.xts.compat.Permission;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.commands.CommandBuildContext;
@@ -27,7 +27,7 @@ public class PlayerControl {
                 argument("player", word()).then(
                         literal("control")
                                 .requires(source -> XTSRules.enabledFakePlayerControl()
-                                        && PermissionUtil.hasPermission(source, XTSRules.fakePlayerControlCommandLevel()))
+                                        && Permission.hasPermission(source, XTSRules.fakePlayerControlCommandLevel()))
                                 .executes(commandContext -> {
                                     try {
                                         String playerName = commandContext.getArgument("player", String.class);
@@ -42,7 +42,7 @@ public class PlayerControl {
                                 })
                 ).then(literal("release"))
                         .requires(source -> XTSRules.enabledFakePlayerControl()
-                                && PermissionUtil.hasPermission(source, XTSRules.fakePlayerControlCommandLevel())
+                                && Permission.hasPermission(source, XTSRules.fakePlayerControlCommandLevel())
                                 && ! CarpetXTSAddition.TempSharedConstants.releaseCommandAlwaysDisabled
                         ).executes(commandContext -> {
                             var result = swapManager.release(commandContext.getSource().getPlayerOrException(), commandContext.getSource().getServer());

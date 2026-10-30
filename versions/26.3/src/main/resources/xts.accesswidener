@@ -1,0 +1,9 @@
+classTweaker  v1  official
+# player control
+accessible method net/minecraft/server/level/ServerPlayer addAdditionalSaveData (Lnet/minecraft/world/level/storage/ValueOutput;)V
+accessible field net/minecraft/world/food/FoodData exhaustionLevel F
+accessible method net/minecraft/server/level/ServerPlayer readAdditionalSaveData (Lnet/minecraft/world/level/storage/ValueInput;)V
+accessible class net/minecraft/server/level/ChunkMap$TrackedEntity
+accessible field net/minecraft/server/level/ChunkMap entityMap Lit/unimi/dsi/fastutil/ints/Int2ObjectMap;
+accessible field net/minecraft/stats/StatsCounter stats Lit/unimi/dsi/fastutil/objects/Object2IntMap;
+accessible field net/minecraft/server/level/ServerPlayer server Lnet/minecraft/server/MinecraftServer;
