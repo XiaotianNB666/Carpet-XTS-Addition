@@ -67,7 +67,7 @@ Best used together with `creativeFlight`.
 
 ### (Fake Player Control) `fakePlayerControl`
 
-> Ported from the `player control` mod
+> Ported from the [`player control`](https://github.com/XiaotianNB666/playercontrol) mod
 
 Controls who is allowed to control fake players.
 
@@ -76,7 +76,7 @@ Two forms of input are accepted:
 - **Permission level**: set to `0` / `1` / `2` / `3` / `4` / `ops` — only players whose permission level is **at least**
   the configured value may control fake players
 
-## When enabled
+#### When enabled
 
 `/player <player> control` lets you take control of a fake player (real-player control is untested).
 
@@ -84,3 +84,13 @@ Two forms of input are accepted:
 - Default: `false`
 - Options: `false`, `0`, `1`, `2`, `3`, `4`, `ops`
 - Categories: `XTS`, `EXPERIMENTAL`
+
+---
+### (TP Command Collection) `tpCommandCollection`
+
+Enable tp-related commands like /tpa *(Not fully completed yet)*
+
+- Type：`String`
+- Default：`false`
+- Options：`false`，`0`，`1`，`2`，`3`，`4`，`ops`
+- Categories：`XTS`，`COMMAND`

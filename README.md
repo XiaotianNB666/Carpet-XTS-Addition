@@ -1,6 +1,7 @@
 # Carpet XTS Addition
 
 ---
+
 ## 简介 / Introduction
 
 > **English** — A [Fabric Carpet](https://github.com/gnembon/fabric-carpet) extension
@@ -21,21 +22,22 @@
 
 ## 文档 / Docs
 
-| | |
-|---|---|
-| 🇨🇳 简体中文规则文档 | [docs/lang/zh_cn.md](docs/lang/zh_cn.md) |
+|                        |                                          |
+|------------------------|------------------------------------------|
+| 🇨🇳 简体中文规则文档          | [docs/lang/zh_cn.md](docs/lang/zh_cn.md) |
 | 🇺🇸 English Rule Docs | [docs/lang/en_us.md](docs/lang/en_us.md) |
 
 ---
 
 ## 规则速查 / Quick Reference
 
-| Rule | 中文名 | 类型 | 默认 | 分类 |
-|---|---|---|---|---|
-| `creativeFlight` | 创造模式飞行 | boolean | `false` | `XTS`, `SURVIVAL` |
-| `creativeFlightFuelBase` | 创造飞行燃料基数 | int | `10` | `XTS`, `SURVIVAL` |
-| `creativeFlightFallHasDamage` | 飞行结束摔落有伤害 | boolean | `true` | `XTS`, `SURVIVAL` |
-| `fakePlayerControl` | 假人操控 | String | `false` | `XTS`, `EXPERIMENTAL` |
+| Rule                          | 中文名       | 类型      | 默认      | 分类                    |
+|-------------------------------|-----------|---------|---------|-----------------------|
+| `creativeFlight`              | 创造模式飞行    | boolean | `false` | `XTS`, `SURVIVAL`     |
+| `creativeFlightFuelBase`      | 创造飞行燃料基数  | int     | `10`    | `XTS`, `SURVIVAL`     |
+| `creativeFlightFallHasDamage` | 飞行结束摔落有伤害 | boolean | `true`  | `XTS`, `SURVIVAL`     |
+| `fakePlayerControl`           | 假人操控      | String  | `false` | `XTS`, `EXPERIMENTAL` |
+| `tpCommandCollection`         | TP 指令集合   | String  | `false` | `XTS`, `COMMAND`      |
 
 详细语义、选项与坑点见上方文档链接。
 See the docs above for full semantics, options and caveats.

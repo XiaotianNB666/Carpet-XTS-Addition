@@ -63,17 +63,27 @@
 ---
 
 ### （假人操控）fakePlayerControl
-> 从 `player control` 模组移植而来
+> 从 [`player control`](https://github.com/XiaotianNB666/playercontrol) 模组移植而来
 
 控制玩家是否能操控假人。
 
 支持两种写法：
 
 - **权限等级**：填 `0` / `1` / `2` / `3` / `4` / `ops`，只有权限等级 ≥ 该值的玩家可以操控假人
-## 开启后
+#### 开启后
 `/player <player> control`可以控制假人（真人未测试）
 
 - 类型：`String`
 - 默认值：`false`
 - 选项：`false`，`0`，`1`，`2`，`3`，`4`，`ops`
 - 分类：`XTS`，`EXPERIMENTAL`
+
+---
+### （TP 指令集合）tpCommandCollection
+
+启用与tp有关指令，如/tpa *(未完全完成)*
+
+- 类型：`String`
+- 默认值：`false`
+- 选项：`false`，`0`，`1`，`2`，`3`，`4`，`ops`
+- 分类：`XTS`，`COMMAND`
