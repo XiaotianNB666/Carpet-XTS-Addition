@@ -62,7 +62,6 @@ public class SwapManager {
         SwapSnapshot origB = originalStates.get(uidB);
 
         SwapSnapshot currentA = SwapSnapshot.capture(initiator);
-        CarpetXTSAddition.LOGGER.info("after applyTo, playerB slot 0 = {}", playerB.getInventory().getItem(0));
         SwapSnapshot currentB = (playerB != null) ? SwapSnapshot.capture(playerB) : null;
 
         activeSwaps.remove(uidA);
