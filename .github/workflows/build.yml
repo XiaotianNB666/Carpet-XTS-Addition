@@ -26,7 +26,7 @@ jobs:
       - name: organize artifacts
         run: |
           mkdir -p staging/versions/sources
-          find versions -maxdepth 3 -path "*/build/libs/*.jar" -type f | while read jar; do
+          find versions -path "*/build/libs/*.jar" -type f | while read jar; do
             fname="$(basename "$jar")"
             if [[ "$fname" == *-sources.jar ]]; then
               cp "$jar" "staging/versions/sources/$fname"
