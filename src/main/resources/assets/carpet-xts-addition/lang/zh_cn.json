@@ -9,6 +9,8 @@
   "carpet.rule.fakePlayerControl.name": "假人控制",
   "carpet.rule.tpCommandCollection.desc": "启用与tp有关指令，如/tpa",
   "carpet.rule.tpCommandCollection.name": "TP 命令集",
+  "carpet.rule.betterArmorTrims.name": "更好的纹饰",
+  "carpet.rule.betterArmorTrims.desc": "Make armor trims great again.\n当纹饰材料为金时，猪灵不会攻击玩家",
   "carpet.category.XTS": "XTS 扩展",
 
   "xts.player.control.error.self_swap": "不能与自己交换！",

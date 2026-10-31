@@ -94,3 +94,14 @@ Enable tp-related commands like /tpa *(Not fully completed yet)*
 - Default：`false`
 - Options：`false`，`0`，`1`，`2`，`3`，`4`，`ops`
 - Categories：`XTS`，`COMMAND`
+
+---
+### (Better Armor Trims) `betterArmorTrims`
+~~Make armor trims great again.~~
+
+Piglins will not attack players wearing **gold-trimmed** armor.
+
+- Type: `boolean`
+- Default: `true`
+- Options: `false`, `true`
+- Categories: `XTS`, `SURVIVAL`

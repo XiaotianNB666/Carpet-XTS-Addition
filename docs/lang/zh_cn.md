@@ -87,3 +87,14 @@
 - 默认值：`false`
 - 选项：`false`，`0`，`1`，`2`，`3`，`4`，`ops`
 - 分类：`XTS`，`COMMAND`
+
+---
+### (更好的纹饰) `betterArmorTrims`
+~~Make armor trims great again.~~
+
+当纹饰材料为**金**时，猪灵不会攻击玩家
+
+- 类型：`boolean`
+- 默认值：`true`
+- 选项：`false`，`true`
+- 分类：`XTS`，`SURVIVAL`

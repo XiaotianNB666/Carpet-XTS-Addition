@@ -33,4 +33,9 @@ public class XTSSettings {
             options = {"0", "1", "2", "3", "4", "ops", "false"}
     )
     public static String tpCommandCollection = "false";
+
+    @Rule(
+            categories = {RuleCategory.SURVIVAL, XTS}
+    )
+    public static boolean betterArmorTrims = false;
 }

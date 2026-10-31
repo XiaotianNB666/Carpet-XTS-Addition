@@ -91,7 +91,7 @@ String fullProjectVersion, fullArtifactVersion
 
 group = project.maven_group
 base.archivesName = project.archives_base_name
-fullProjectVersion = 'v' + project.mod_version + '-mc' + project.minecraft_version + modVersionSuffix
+fullProjectVersion = project.mod_version + '-mc' + project.minecraft_version + modVersionSuffix
 fullArtifactVersion = artifactVersion + '-mc' + project.minecraft_version + artifactVersionSuffix
 version = fullProjectVersion
 

@@ -9,6 +9,8 @@
   "carpet.rule.fakePlayerControl.name": "Fake Player Control",
   "carpet.rule.tpCommandCollection.desc": "Enable tp-related commands like /tpa",
   "carpet.rule.tpCommandCollection.name": "TP Command Collection",
+  "carpet.rule.betterArmorTrims.name": "Better Armor Trims",
+  "carpet.rule.betterArmorTrims.desc": "Make armor trims great again.\nPiglins will not attack players wearing gold-trimmed armor.",
   "carpet.category.XTS": "XTS",
 
   "xts.player.control.error.self_swap": "Can't swap with yourself!",
