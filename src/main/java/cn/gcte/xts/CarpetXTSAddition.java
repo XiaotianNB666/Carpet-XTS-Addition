@@ -18,5 +18,6 @@ public class CarpetXTSAddition implements ModInitializer {
     public static class TempSharedConstants {
         public static final boolean selfSwapIsRelease = true;
         public static final boolean releaseCommandAlwaysDisabled = true;
+        public static boolean allowControlRealPlayer = false;
     }
 }

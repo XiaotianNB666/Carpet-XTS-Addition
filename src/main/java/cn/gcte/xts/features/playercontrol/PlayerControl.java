@@ -1,5 +1,6 @@
 package cn.gcte.xts.features.playercontrol;
 
+import carpet.patches.EntityPlayerMPFake;
 import cn.gcte.xts.CarpetXTSAddition;
 import cn.gcte.xts.XTSExtensionServer;
 import cn.gcte.xts.rules.XTSRules;
@@ -32,6 +33,13 @@ public class PlayerControl {
                                     try {
                                         String playerName = commandContext.getArgument("player", String.class);
                                         var player = Objects.requireNonNull(commandContext.getSource().getServer().getPlayerList().getPlayer(playerName));
+                                        if (! CarpetXTSAddition.TempSharedConstants.allowControlRealPlayer
+                                                && (player instanceof EntityPlayerMPFake || swapManager.isSwapped(player.getUUID()))) {
+                                            commandContext.getSource().sendFailure(Component.translatableWithFallback(
+                                                    "xts.player.control.require_fake_player","Cannot control non-carpet-fakeplayer %s",player.getName()
+                                            ));
+                                            return 0;
+                                        }
                                         var result = swapManager.swap(commandContext.getSource().getPlayerOrException(), player);
                                         return result.success() ? 1 : 0;
                                     } catch (Exception e) {

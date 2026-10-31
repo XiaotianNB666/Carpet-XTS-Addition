@@ -78,7 +78,7 @@ Two forms of input are accepted:
 
 #### When enabled
 
-`/player <player> control` lets you take control of a fake player (real-player control is untested).
+`/player <player> control` lets you take control of a fake player (real-player control has some issues).
 
 - Type: `String`
 - Default: `false`

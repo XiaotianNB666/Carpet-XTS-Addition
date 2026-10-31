@@ -19,6 +19,7 @@
   "xts.player.control.error.original_missing": "发起者的原始状态丢失。",
   "xts.player.control.partner_offline_restored": "交换对象已离线，你的原始身份已恢复。",
   "xts.player.control.error.swap_failed": "交换失败：%s",
+  "xts.player.control.require_fake_player": "不能控制非地毯假人 %s",
 
   "xts.tpa.sent": "已发送 TPA 请求给 %s",
   "xts.tpa.sent_to_you": "%s 向你发送了 TPA 请求",

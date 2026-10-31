@@ -19,6 +19,7 @@
   "xts.player.control.error.original_missing": "Original state for initiator is missing.",
   "xts.player.control.partner_offline_restored": "Swap partner went offline, your original identity has been restored.",
   "xts.player.control.error.swap_failed": "Swap Failed: %s",
+  "xts.player.control.require_fake_player": "Cannot control non-carpet-fakeplayer %s",
 
   "xts.tpa.sent": "TP request sent to %s",
   "xts.tpa.sent_to_you": "%s sent you a TPA request",
