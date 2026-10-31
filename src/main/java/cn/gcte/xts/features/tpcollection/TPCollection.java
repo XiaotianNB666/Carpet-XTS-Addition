@@ -24,6 +24,7 @@ public class TPCollection {
     public static void registerCommands(@NotNull CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext commandBuildContext) {
         TPACommand.registerTPACommands(dispatcher, commandBuildContext);
         HomeCommand.registerHomeCommands(dispatcher, commandBuildContext);
+        BackCommand.registerBackCommands(dispatcher, commandBuildContext);
     }
 
     private static final class TPACommand {
@@ -227,5 +228,36 @@ public class TPCollection {
             source.sendSuccess(() -> Component.translatableWithFallback("xts.home.deleted", "Home deleted."), false);
             return Command.SINGLE_SUCCESS;
         }
+    }
+
+    private static final class BackCommand {
+        @SuppressWarnings("unused")
+        private static void registerBackCommands(@NotNull CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext commandBuildContext) {
+            dispatcher.register(literal("back")
+                    .requires(stack -> XTSRules.enabledTpCommandCollection()
+                            && Permission.hasPermission(stack, XTSRules.tpCommandCollectionCommandLevel()))
+                    .executes(source -> {
+                        var player = source.getSource().getPlayer();
+                        if (player == null) {
+                            source.getSource().sendFailure(
+                                    Component.translatableWithFallback("xts.tpcollection.player_only","Only players can execute this command.")
+                            );
+                            return 0;
+                        }
+                        var last = ((LastPositionAccess) player).xts$last();
+                        if (last == null) {
+                            source.getSource().sendFailure(
+                                    Component.translatableWithFallback("xts.back.no_position", "Last position not recorded yet")
+                            );
+                        }
+                        return 1;
+                    }));
+        }
+    }
+
+    public interface LastPositionAccess {
+        PositionRecord xts$last();
+
+        void xts$setLast(PositionRecord last);
     }
 }

@@ -7,7 +7,8 @@
     "creativefight.ServerPlayerMixin",
     "playercontrol.PlayerAccessor",
     "playercontrol.PlayerDisconnectMixin",
-    "playercontrol.TrackedEntityAccessor"
+    "playercontrol.TrackedEntityAccessor",
+    "tp.ServerPlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

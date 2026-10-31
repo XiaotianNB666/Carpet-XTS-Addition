@@ -2,7 +2,6 @@ package cn.gcte.xts.features.tpcollection;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.core.UUIDUtil;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraft.world.level.saveddata.SavedDataType;
@@ -15,19 +14,19 @@ import java.util.UUID;
 
 public class HomeSavedData extends SavedData {
 
-    public static final Codec<HomeManager.HomeData> ENTRY_CODEC = RecordCodecBuilder.create(i ->
+    public static final Codec<PositionRecord> ENTRY_CODEC = RecordCodecBuilder.create(i ->
             i.group(
                     Codec.DOUBLE.fieldOf("x").forGetter(d -> d.pos().x()),
                     Codec.DOUBLE.fieldOf("y").forGetter(d -> d.pos().y()),
                     Codec.DOUBLE.fieldOf("z").forGetter(d -> d.pos().z()),
-                    Codec.STRING.fieldOf("dim").forGetter(HomeManager.HomeData::dimension),
-                    Codec.FLOAT.fieldOf("yaw").forGetter(HomeManager.HomeData::yaw),
-                    Codec.FLOAT.fieldOf("pitch").forGetter(HomeManager.HomeData::pitch)
+                    Codec.STRING.fieldOf("dim").forGetter(PositionRecord::dimToString),
+                    Codec.FLOAT.fieldOf("yaw").forGetter(PositionRecord::yaw),
+                    Codec.FLOAT.fieldOf("pitch").forGetter(PositionRecord::pitch)
             ).apply(i, (x, y, z, dim, yaw, pitch) ->
-                    new HomeManager.HomeData(new Vec3(x, y, z), dim, yaw, pitch))
+                    new PositionRecord(new Vec3(x, y, z), PositionRecord.dimFromString(dim), yaw, pitch))
     );
 
-//    private static final Codec<Map<UUID, HomeManager.HomeData>> MAP_CODEC =
+//    private static final Codec<Map<UUID, HomeManager.PositionRecord>> MAP_CODEC =
 //            Codec.unboundedMap(UUIDUtil.CODEC, ENTRY_CODEC);
 
 //    public static final Codec<HomeSavedData> CODEC = MAP_CODEC.xmap(
@@ -35,17 +34,17 @@ public class HomeSavedData extends SavedData {
 //            HomeSavedData::homes
 //    );
 
-    private static final Codec<Map<String, HomeManager.HomeData>> STRING_MAP_CODEC =
+    private static final Codec<Map<String, PositionRecord>> STRING_MAP_CODEC =
             Codec.unboundedMap(Codec.STRING, ENTRY_CODEC);
 
     public static final Codec<HomeSavedData> CODEC = STRING_MAP_CODEC.xmap(
             m -> {
-                Map<UUID, HomeManager.HomeData> map = new HashMap<>();
+                Map<UUID, PositionRecord> map = new HashMap<>();
                 m.forEach((k, v) -> map.put(UUID.fromString(k), v));
                 return new HomeSavedData(map);
             },
             data -> {
-                Map<String, HomeManager.HomeData> map = new HashMap<>();
+                Map<String, PositionRecord> map = new HashMap<>();
                 data.homes.forEach((k, v) -> map.put(k.toString(), v));
                 return map;
             }
@@ -62,16 +61,16 @@ public class HomeSavedData extends SavedData {
             DataFixTypes.PLAYER
     );
 
-    private final Map<UUID, HomeManager.HomeData> homes = new HashMap<>();
+    private final Map<UUID, PositionRecord> homes = new HashMap<>();
 
     public HomeSavedData() {
     }
 
-    public HomeSavedData(Map<UUID, HomeManager.HomeData> homes) {
+    public HomeSavedData(Map<UUID, PositionRecord> homes) {
         this.homes.putAll(homes);
     }
 
-    public Map<UUID, HomeManager.HomeData> homes() {
+    public Map<UUID, PositionRecord> homes() {
         return homes;
     }
 
@@ -79,11 +78,11 @@ public class HomeSavedData extends SavedData {
         return homes.containsKey(uuid);
     }
 
-    public HomeManager.HomeData getHome(UUID uuid) {
+    public PositionRecord getHome(UUID uuid) {
         return homes.get(uuid);
     }
 
-    public void setHome(UUID uuid, HomeManager.HomeData data) {
+    public void setHome(UUID uuid, PositionRecord data) {
         homes.put(uuid, data);
         setDirty();
     }

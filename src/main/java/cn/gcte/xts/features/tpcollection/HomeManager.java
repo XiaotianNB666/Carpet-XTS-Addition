@@ -6,7 +6,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +14,7 @@ import java.util.UUID;
 
 public class HomeManager {
 
-    private static final Map<UUID, HomeData> HOME_CACHE = new HashMap<>();
+    private static final Map<UUID, PositionRecord> HOME_CACHE = new HashMap<>();
 
     public static void onPlayerJoin(ServerPlayer player) {
         HomeSavedData data = HomeSavedData.get(player.level());
@@ -32,15 +31,15 @@ public class HomeManager {
         return HOME_CACHE.containsKey(uuid);
     }
 
-    public static HomeData getHome(UUID uuid) {
+    public static PositionRecord getHome(UUID uuid) {
         return HOME_CACHE.get(uuid);
     }
 
     public static void setHome(ServerPlayer player) {
         HomeSavedData data = HomeSavedData.get(player.level());
-        HomeData home = new HomeData(
+        PositionRecord home = new PositionRecord(
                 player.position(),
-                player.level().dimension().location().toString(),
+                player.level().dimension(),
                 player.getYRot(),
                 player.getXRot()
         );
@@ -56,7 +55,7 @@ public class HomeManager {
 
     public static boolean teleportToHome(ServerPlayer player) {
         UUID uuid = player.getUUID();
-        HomeData home = HOME_CACHE.get(uuid);
+        PositionRecord home = HOME_CACHE.get(uuid);
         if (home == null) {
             HomeSavedData data = HomeSavedData.get(player.level());
             if (!data.hasHome(uuid)) return false;
@@ -64,19 +63,7 @@ public class HomeManager {
             HOME_CACHE.put(uuid, home);
         }
 
-        ResourceKey<Level> dim = ResourceKey.create(
-                Registries.DIMENSION,
-                ResourceLocation.parse(home.dimension())
-        );
-        ServerLevel target = player.server.getLevel(dim);
-        if (target == null) return false;
-
-        player.teleportTo(target,
-                home.pos().x, home.pos().y, home.pos().z,
-                Set.of(), home.yaw(), home.pitch(), false);
-        return true;
+        return home.teleportPlayer(player);
     }
 
-    public record HomeData(Vec3 pos, String dimension, float yaw, float pitch) {
-    }
 }

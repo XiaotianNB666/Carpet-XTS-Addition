@@ -38,10 +38,13 @@
   "xts.tpa.sender_offline": "对方已离线",
   "xts.tpa.usage": "使用 /tpa accept 或 /tpa deny",
 
-  "xts.home.player_only": "仅玩家可执行此命令。",
+  "xts.tpcollection.player_only": "仅玩家可执行此命令。",
+
   "xts.home.set_success": "已设置 home。",
   "xts.home.not_set": "你还没有设置 home。",
   "xts.home.teleport_failed": "home 维度不存在或传送失败。",
   "xts.home.teleport_success": "已传送到 home。",
-  "xts.home.deleted": "已删除 home。"
+  "xts.home.deleted": "已删除 home。",
+
+  "xts.back.no_position": "尚未记录上次位置"
 }
