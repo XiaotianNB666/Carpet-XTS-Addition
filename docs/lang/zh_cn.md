@@ -81,7 +81,7 @@
 ---
 ### （TP 指令集合）tpCommandCollection
 
-启用与tp有关指令，如/tpa *(未完全完成)*
+启用与tp有关指令，如/tpa `/tpa` `/home` `/sethome` `/delhome` `/back` *(也许完成了)*
 
 - 类型：`String`
 - 默认值：`false`

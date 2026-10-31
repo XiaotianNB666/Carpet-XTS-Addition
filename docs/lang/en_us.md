@@ -88,7 +88,7 @@ Two forms of input are accepted:
 ---
 ### (TP Command Collection) `tpCommandCollection`
 
-Enable tp-related commands like /tpa *(Not fully completed yet)*
+Enable tp-related commands like `/tpa` `/home` `/sethome` `/delhome` `/back` *(Maybe completed)*
 
 - Type：`String`
 - Default：`false`
