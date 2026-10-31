@@ -29,7 +29,7 @@ public abstract class ServerPlayerMixin implements XTSFuelAccess {
         ServerPlayer self = (ServerPlayer) (Object) this;
 
         if (!XTSRules.creativeFlight()) {
-            if (self.getAbilities().flying && !self.gameMode.isSurvival()) {
+            if (self.getAbilities().flying && self.gameMode.isSurvival()) {
                 xts$stopFlying(self, XTSRules.creativeFlightFallHasDamage());
             } else {
                 self.getAbilities().mayfly = self.isCreative() || self.isSpectator();
@@ -53,7 +53,7 @@ public abstract class ServerPlayerMixin implements XTSFuelAccess {
 
         self.getAbilities().mayfly = true;
 
-        if (self.getAbilities().flying) {
+        if (self.getAbilities().flying && self.gameMode().isSurvival()) {
             if (xts$flightFuel <= 0) {
                 if (consumeOneRocket(self, slot) && damageElytra(self)) {
                     xts$flightFuel = boostTicksFor(self.getInventory().getItem(slot));
