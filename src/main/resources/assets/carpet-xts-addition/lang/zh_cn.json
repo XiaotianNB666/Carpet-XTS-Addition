@@ -36,5 +36,12 @@
   "xts.tpa.offline": "目标玩家不在线",
   "xts.tpa.already_sent": "你已经向该玩家发送过 TPA 请求，请等待回应",
   "xts.tpa.sender_offline": "对方已离线",
-  "xts.tpa.usage": "使用 /tpa accept 或 /tpa deny"
+  "xts.tpa.usage": "使用 /tpa accept 或 /tpa deny",
+
+  "xts.home.player_only": "仅玩家可执行此命令。",
+  "xts.home.set_success": "已设置 home。",
+  "xts.home.not_set": "你还没有设置 home。",
+  "xts.home.teleport_failed": "home 维度不存在或传送失败。",
+  "xts.home.teleport_success": "已传送到 home。",
+  "xts.home.deleted": "已删除 home。"
 }

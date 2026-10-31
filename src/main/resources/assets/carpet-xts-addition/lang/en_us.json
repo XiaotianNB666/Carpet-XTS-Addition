@@ -36,5 +36,12 @@
   "xts.tpa.offline": "Target player is not online",
   "xts.tpa.already_sent": "You already sent a TPA request, please wait",
   "xts.tpa.sender_offline": "Sender is no longer online",
-  "xts.tpa.usage": "Use /tpa accept or /tpa deny"
+  "xts.tpa.usage": "Use /tpa accept or /tpa deny",
+
+  "xts.home.player_only": "Only players can execute this command.",
+  "xts.home.set_success": "Home set.",
+  "xts.home.not_set": "You haven't set a home yet.",
+  "xts.home.teleport_failed": "Home dimension not found or teleport failed.",
+  "xts.home.teleport_success": "Teleported to home.",
+  "xts.home.deleted": "Home deleted."
 }

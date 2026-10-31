@@ -5,11 +5,13 @@ import carpet.CarpetServer;
 import carpet.api.settings.SettingsManager;
 import carpet.utils.Translations;
 import cn.gcte.xts.features.playercontrol.PlayerControl;
+import cn.gcte.xts.features.tpcollection.HomeManager;
 import cn.gcte.xts.features.tpcollection.TPCollection;
 import cn.gcte.xts.rules.XTSRuleRegistrar;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.server.level.ServerPlayer;
 
 import java.util.Map;
 
@@ -50,5 +52,15 @@ public class XTSExtensionServer implements CarpetExtension {
     public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, final CommandBuildContext commandBuildContext) {
         PlayerControl.registerCommand(dispatcher, commandBuildContext);
         TPCollection.registerCommands(dispatcher, commandBuildContext);
+    }
+
+    @Override
+    public void onPlayerLoggedIn(ServerPlayer player) {
+        HomeManager.onPlayerJoin(player);
+    }
+
+    @Override
+    public void onPlayerLoggedOut(ServerPlayer player) {
+        HomeManager.onPlayerLeave(player);
     }
 }
