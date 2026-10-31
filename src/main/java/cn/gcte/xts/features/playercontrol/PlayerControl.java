@@ -34,13 +34,16 @@ public class PlayerControl {
                                         String playerName = commandContext.getArgument("player", String.class);
                                         var player = Objects.requireNonNull(commandContext.getSource().getServer().getPlayerList().getPlayer(playerName));
                                         if (! CarpetXTSAddition.TempSharedConstants.allowControlRealPlayer
-                                                && (player instanceof EntityPlayerMPFake || swapManager.isSwapped(player.getUUID()))) {
+                                                && ! (player instanceof EntityPlayerMPFake || swapManager.isSwapped(player.getUUID()))) {
                                             commandContext.getSource().sendFailure(Component.translatableWithFallback(
                                                     "xts.player.control.require_fake_player","Cannot control non-carpet-fakeplayer %s",player.getName()
                                             ));
                                             return 0;
                                         }
                                         var result = swapManager.swap(commandContext.getSource().getPlayerOrException(), player);
+                                        if (! result.success()) {
+                                            commandContext.getSource().sendFailure(result.message());
+                                        }
                                         return result.success() ? 1 : 0;
                                     } catch (Exception e) {
                                         //send feed back
