@@ -10,6 +10,7 @@
 |----------------|---------------------------------------------------------------------------------------------------------|
 | `XTS`          | Carpet XTS Addition rules                                                                               |
 | `SURVIVAL`     | Gameplay-facing; expands what is possible in Survival mode                                              |
+| `COMMAND`      | Command; add commands to Minecraft                                                                      |
 | `EXPERIMENTAL` | Experimental; semantics and implementation may change between versions — test on a staging server first |
 
 ---
@@ -86,6 +87,7 @@ Two forms of input are accepted:
 - Categories: `XTS`, `EXPERIMENTAL`
 
 ---
+
 ### (TP Command Collection) `tpCommandCollection`
 
 Enable tp-related commands like `/tpa` `/home` `/sethome` `/delhome` `/back` *(Maybe completed)*
@@ -96,7 +98,9 @@ Enable tp-related commands like `/tpa` `/home` `/sethome` `/delhome` `/back` *(M
 - Categories：`XTS`，`COMMAND`
 
 ---
+
 ### (Better Armor Trims) `betterArmorTrims`
+
 ~~Make armor trims great again.~~
 
 Piglins will not attack players wearing **gold-trimmed** armor.

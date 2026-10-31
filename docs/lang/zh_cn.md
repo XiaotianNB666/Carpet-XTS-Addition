@@ -10,6 +10,7 @@
 |----------------|----------------------------|
 | `XTS`          | Carpet XTS Addition分类      |
 | `SURVIVAL`     | 生存玩法向，会改变生存模式下的可操作边界       |
+| `COMMAND`      | 指令添加，给Minecraft增加指令        |
 | `EXPERIMENTAL` | 实验性特性，语义与实现可能随版本调整，生产服请先测试 |
 
 ---
@@ -63,6 +64,7 @@
 ---
 
 ### （假人操控）fakePlayerControl
+
 > 从 [`player control`](https://github.com/XiaotianNB666/playercontrol) 模组移植而来
 
 控制玩家是否能操控假人。
@@ -70,7 +72,9 @@
 支持两种写法：
 
 - **权限等级**：填 `0` / `1` / `2` / `3` / `4` / `ops`，只有权限等级 ≥ 该值的玩家可以操控假人
+
 #### 开启后
+
 `/player <player> control`可以控制假人（真人玩家控制有一点问题）
 
 - 类型：`String`
@@ -79,6 +83,7 @@
 - 分类：`XTS`，`EXPERIMENTAL`
 
 ---
+
 ### （TP 指令集合）tpCommandCollection
 
 启用与tp有关指令，如`/tpa` `/home` `/sethome` `/delhome` `/back` *(也许完成了)*
@@ -89,7 +94,9 @@
 - 分类：`XTS`，`COMMAND`
 
 ---
+
 ### (更好的纹饰) `betterArmorTrims`
+
 ~~Make armor trims great again.~~
 
 当纹饰材料为**金**时，猪灵不会攻击玩家
