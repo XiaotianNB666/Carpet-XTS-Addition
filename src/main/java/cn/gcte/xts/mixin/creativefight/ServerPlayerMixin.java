@@ -28,9 +28,9 @@ public abstract class ServerPlayerMixin implements XTSFuelAccess {
     private void xts$creativeFlightWithRockets(CallbackInfo ci) {
         ServerPlayer self = (ServerPlayer) (Object) this;
 
-        if (!XTSRules.creativeFlight() || !self.gameMode.isSurvival()) {
-            if (self.getAbilities().flying && !self.isCreative() && !self.isSpectator()) {
-                xts$stopFlying(self, false);
+        if (!XTSRules.creativeFlight()) {
+            if (self.getAbilities().flying && !self.gameMode.isSurvival()) {
+                xts$stopFlying(self, XTSRules.creativeFlightFallHasDamage());
             } else {
                 self.getAbilities().mayfly = self.isCreative() || self.isSpectator();
             }
