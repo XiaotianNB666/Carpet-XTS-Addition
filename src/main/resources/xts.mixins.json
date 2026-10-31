@@ -8,7 +8,7 @@
     "playercontrol.PlayerAccessor",
     "playercontrol.PlayerDisconnectMixin",
     "playercontrol.TrackedEntityAccessor",
-    "tp.ServerPlayerMixin"
+    "tp.ServerPlayerTPMixin"
   ],
   "injectors": {
     "defaultRequire": 1

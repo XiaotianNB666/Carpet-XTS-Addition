@@ -43,10 +43,12 @@ public abstract class ServerPlayerMixin implements XTSFuelAccess {
         var applyFallDamage = XTSRules.creativeFlightFallHasDamage() && !self.isCreative() && !self.isSpectator();
 
         if (!hasElytra || slot < 0) {
-            if (self.getAbilities().flying) {
-                xts$stopFlying(self, applyFallDamage);
-            } else {
-                self.getAbilities().mayfly = false;
+            if (self.gameMode().isSurvival()) {
+                if (self.getAbilities().flying) {
+                    xts$stopFlying(self, applyFallDamage);
+                } else {
+                    self.getAbilities().mayfly = false;
+                }
             }
             return;
         }

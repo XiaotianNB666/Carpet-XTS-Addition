@@ -13,6 +13,7 @@ import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -244,20 +245,16 @@ public class TPCollection {
                             );
                             return 0;
                         }
-                        var last = ((LastPositionAccess) player).xts$last();
+                        var last = LastPositionManager.getLast(player);
                         if (last == null) {
                             source.getSource().sendFailure(
                                     Component.translatableWithFallback("xts.back.no_position", "Last position not recorded yet")
                             );
+                            return 0;
                         }
+                        last.teleportPlayer(player);
                         return 1;
                     }));
         }
-    }
-
-    public interface LastPositionAccess {
-        PositionRecord xts$last();
-
-        void xts$setLast(PositionRecord last);
     }
 }

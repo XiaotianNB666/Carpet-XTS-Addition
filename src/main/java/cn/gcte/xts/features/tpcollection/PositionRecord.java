@@ -1,5 +1,6 @@
 package cn.gcte.xts.features.tpcollection;
 
+import cn.gcte.xts.CarpetXTSAddition;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -14,13 +15,24 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Set;
 
 public record PositionRecord(Vec3 pos, ResourceKey<Level> dimension, float yaw, float pitch) {
+    @Deprecated
     @Contract("_ -> new")
     public static @NotNull PositionRecord from(@NotNull TeleportTransition teleportTransition) {
         return new PositionRecord(
                 teleportTransition.position(),
                 teleportTransition.newLevel().dimension(),
-                teleportTransition.xRot(),
-                teleportTransition.yRot());
+                teleportTransition.yRot(),
+                teleportTransition.xRot());
+    }
+
+    @Contract("_ -> new")
+    public static @NotNull PositionRecord from(@NotNull ServerPlayer player) {
+        return new PositionRecord(
+                player.position(),
+                player.level().dimension(),
+                player.getYRot(),
+                player.getXRot()
+        );
     }
 
     public static @NotNull ResourceKey<Level> dimFromString(String dimension) {
@@ -34,7 +46,8 @@ public record PositionRecord(Vec3 pos, ResourceKey<Level> dimension, float yaw, 
         return dimension.location().toString();
     }
 
-    public boolean teleportPlayer(ServerPlayer player) {
+    public boolean teleportPlayer(@NotNull ServerPlayer player) {
+        if (! CarpetXTSAddition.TempSharedConstants.everyTPCanBack) LastPositionManager.setLast(player);
         ServerLevel target = player.server.getLevel(dimension());
         if (target == null) return false;
 
