@@ -43,7 +43,11 @@ public record PositionRecord(Vec3 pos, ResourceKey<Level> dimension, float yaw, 
     }
 
     public @NotNull String dimToString() {
+        //#if MC>=12111
+        //$$ return dimension.identifier().toString();
+        //#else
         return dimension.location().toString();
+        //#endif
     }
 
     public boolean teleportPlayer(@NotNull ServerPlayer player) {
