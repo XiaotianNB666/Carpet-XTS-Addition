@@ -38,6 +38,7 @@
 | `creativeFlightFallHasDamage` | 飞行结束摔落有伤害 | boolean | `true`  | `XTS`, `SURVIVAL`     |
 | `fakePlayerControl`           | 假人操控      | String  | `false` | `XTS`, `EXPERIMENTAL` |
 | `tpCommandCollection`         | TP 指令集合   | String  | `false` | `XTS`, `COMMAND`      |
+| `betterArmorTrims`            | 更好的纹饰     | boolean | `false` | `XTS`, `SURVIVAL`     |
 
 详细语义、选项与坑点见上方文档链接。
 See the docs above for full semantics, options and caveats.
