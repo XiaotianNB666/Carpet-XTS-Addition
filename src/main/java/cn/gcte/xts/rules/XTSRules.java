@@ -35,4 +35,8 @@ public class XTSRules {
         String value = (String) XTSExtensionServer.settingsManager().getCarpetRule("tpCommandCollection").value();
         return Permission.parsePermission(value);
     }
+
+    public static boolean betterArmorTrims() {
+        return (boolean) XTSExtensionServer.settingsManager().getCarpetRule("betterArmorTrims").value();
+    }
 }
