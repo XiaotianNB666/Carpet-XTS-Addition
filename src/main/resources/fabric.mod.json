@@ -20,7 +20,8 @@
 		]
 	},
 	"mixins": [
-      "xts.mixins.json"
+      "xts.mixins.json",
+      "xts.section.mixins.json"
 	],
     "accessWidener": "xts.accesswidener",
 	"depends": {

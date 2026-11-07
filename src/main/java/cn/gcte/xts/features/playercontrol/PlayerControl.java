@@ -76,7 +76,7 @@ public class PlayerControl {
                                 var player = source.getPlayerOrException();
                                 swapManager.release(player, source.getServer());
                             } catch (CommandSyntaxException e) {
-                                CarpetXTSAddition.LOGGER.error("Failed to handle fakePlayerControls for player {} when disabling fakePlayerControl rule", source.getTextName(), e);
+                                CarpetXTSAddition.LOGGER.error("Failed to getRuleValue fakePlayerControls for player {} when disabling fakePlayerControl rule", source.getTextName(), e);
                             }
                         }
                     }

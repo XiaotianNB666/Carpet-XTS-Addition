@@ -15,6 +15,10 @@ repositories {
     maven {
         url = 'https://jitpack.io'
     }
+    maven {
+        name = "fallensMavenReleases"
+        url = uri("https://maven.fallenbreath.me/releases")
+    }
 }
 
 // https://github.com/FabricMC/fabric-loader/issues/783
@@ -44,11 +48,27 @@ dependencies {
     }
     // Mixin Extras
     include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:0.2.2")))
+
     autoImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+    // Mixin Constraints
+    implementation("com.moulberry:mixinconstraints:1.0.1") {
+        transitive = false
+    }
+    include("com.moulberry:mixinconstraints:1.0.1") {
+        transitive = false
+    }
 //    autoImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
     // Carpet
     autoImplementation "carpet:fabric-carpet:${project.carpet_version}"
+
+    // Carpet TIS Addition
+    if (true) {
+        compileOnly "maven.modrinth:jE0SjGuf:${project.tis_version}"
+        modRuntimeOnly "me.fallenbreath:conditional-mixin-fabric:0.6.5"
+        modRuntimeOnly "maven.modrinth:jE0SjGuf:${project.tis_version}"
+    }
 }
 
 JavaVersion JAVA_COMPATIBILITY
