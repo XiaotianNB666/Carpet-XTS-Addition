@@ -11,6 +11,9 @@
   "carpet.rule.tpCommandCollection.name": "TP Command Collection",
   "carpet.rule.betterArmorTrims.name": "Better Armor Trims",
   "carpet.rule.betterArmorTrims.desc": "Make armor trims great again.\nPiglins will not attack players wearing gold-trimmed armor.",
+  "carpet.rule.enableSections.name": "Enable Sections",
+  "carpet.rule.enableSections.desc": "Enable sections.\nIt can enable the specific settings for each sections.",
+
   "carpet.category.XTS": "XTS",
 
   "xts.player.control.error.self_swap": "Can't swap with yourself!",

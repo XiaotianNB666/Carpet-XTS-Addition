@@ -1,0 +1,9 @@
+{
+  "required": false,
+  "package": "cn.gcte.xts.mixin.section",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "tis.ObserverNoDetection"
+  ],
+  "plugin": "com.moulberry.mixinconstraints.ConstraintsMixinPlugin"
+}

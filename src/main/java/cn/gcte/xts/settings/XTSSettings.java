@@ -38,4 +38,9 @@ public class XTSSettings {
             categories = {RuleCategory.SURVIVAL, XTS}
     )
     public static boolean betterArmorTrims = false;
+
+    @Rule(
+            categories = {RuleCategory.EXPERIMENTAL, XTS}
+    )
+    public static boolean enabledSections = false;
 }
