@@ -1,29 +1,18 @@
 package cn.gcte.xts.features.restart;
 
-import net.fabricmc.loader.api.FabricLoader;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 import org.jetbrains.annotations.VisibleForTesting;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Reconstructs the current JVM command line so the server can restart itself
- * when no restartScriptPath is configured.
- *
- * <p>Resolution order:
- * <ol>
- *   <li>{@code -jar &lt;file&gt;} from input arguments (most Fabric servers)</li>
- *   <li>{@code sun.java.command} system property</li>
- * </ol>
- */
 final class RestartCommandBuilder {
 
     private RestartCommandBuilder() {}
@@ -45,11 +34,21 @@ final class RestartCommandBuilder {
         if (jar != null && !jar.isEmpty()) {
             cmd.add("-jar");
             cmd.add(jar);
-        } else if (classpath != null && !classpath.isEmpty()
-                && mainAndArgs != null && !mainAndArgs.isEmpty()) {
-            cmd.add("-cp");
-            cmd.add(classpath);
-            cmd.addAll(splitCommand(mainAndArgs));
+        } else if (mainAndArgs != null && !mainAndArgs.isEmpty()) {
+            List<String> tokens = splitCommand(mainAndArgs);
+            String first = tokens.getFirst();
+            if (isJarFile(first)) {
+                cmd.add("-jar");
+                cmd.add(resolveJar(first));
+                cmd.addAll(tokens.subList(1, tokens.size()));
+            } else if (classpath != null && !classpath.isEmpty()) {
+                cmd.add("-cp");
+                cmd.add(classpath);
+                cmd.addAll(tokens);
+            } else {
+                throw new IllegalStateException(
+                        "sun.java.command is a class but no classpath available");
+            }
         } else {
             throw new IllegalStateException(
                     "no -jar and no sun.java.command available");
@@ -58,18 +57,17 @@ final class RestartCommandBuilder {
     }
 
     @NotNull
-    static List<String> buildScriptCommand(Path script) {
-        if (System.getProperty("os.name").toLowerCase().contains("win")) {
+    static @Unmodifiable List<String> buildScriptCommand(Path script) {
+        if (windows()) {
             return List.of("cmd", "/c", script.toAbsolutePath().toString());
         }
-        return List.of(script.toAbsolutePath().toString());
+        return List.of("sh", script.toAbsolutePath().toString());
     }
 
     @NotNull
     private static String javaExecutable() {
         String home = System.getProperty("java.home");
-        String os = System.getProperty("os.name", "");
-        String exe = os.toLowerCase().contains("win") ? "bin\\java.exe" : "bin/java";
+        String exe = windows() ? "bin\\java.exe" : "bin/java";
         return Paths.get(home, exe).toString();
     }
 
@@ -77,33 +75,24 @@ final class RestartCommandBuilder {
     @Unmodifiable
     private static List<String> filteredJvmArgs() {
         List<String> raw = runtimeMxBean().getInputArguments();
-        boolean dev = FabricLoader.getInstance().isDevelopmentEnvironment();
-        if (!dev) return List.copyOf(raw);
-
         List<String> out = new ArrayList<>(raw.size());
         for (String a : raw) {
-            if (a.startsWith("-agentlib:")) continue;     // debug agents
-            if (a.startsWith("-javaagent:")) continue;    // IDE agents
-            if (a.startsWith("-Djb.")) continue;          // IntelliJ vendor options
-            if (a.startsWith("-Xrun")) continue;          // legacy agents
+            if (a.startsWith("-agentlib:")) continue;
+            if (a.startsWith("-javaagent:")) continue;
+            if (a.startsWith("-Djb.")) continue;
+            if (a.startsWith("-Xrun")) continue;
+            if (a.startsWith("-Duser.variant")) continue;
             out.add(a);
         }
         return List.copyOf(out);
     }
 
-    /**
-     * Locate "-jar xxx.jar" in the original command line, keeping the path verbatim.
-     */
     private static String findJarArgument() {
         List<String> args = runtimeMxBean().getInputArguments();
         for (int i = 0; i < args.size(); i++) {
             if ("-jar".equals(args.get(i)) && i + 1 < args.size()) {
                 String jar = args.get(i + 1);
-                Path p = Paths.get(jar);
-                if (!Files.exists(p)) {
-                    p = Paths.get(System.getProperty("user.dir")).resolve(jar).normalize();
-                }
-                return p.toString();
+                return resolveJar(jar);
             }
         }
         return null;
@@ -119,14 +108,10 @@ final class RestartCommandBuilder {
         return ManagementFactory.getRuntimeMXBean();
     }
 
-    /**
-     * Splits {@code "main.Class arg1 \"arg with space\""} into tokens,
-     * preserving quoted groups.
-     */
     @VisibleForTesting
     @NotNull
     @Unmodifiable
-    static List<String> splitCommand(String command) {
+    static List<String> splitCommand(@NotNull String command) {
         List<String> tokens = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         boolean inQuotes = false;
@@ -145,5 +130,18 @@ final class RestartCommandBuilder {
         }
         if (!sb.isEmpty()) tokens.add(sb.toString());
         return List.copyOf(tokens);
+    }
+
+    @Contract(pure = true)
+    private static boolean isJarFile(String s) {
+        return s.endsWith(".jar");
+    }
+
+    private static @NotNull String resolveJar(String jar) {
+        return Paths.get(System.getProperty("user.dir")).resolve(jar).normalize().toString();
+    }
+
+    private static boolean windows() {
+        return System.getProperty("os.name", "").toLowerCase().contains("win");
     }
 }
