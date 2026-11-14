@@ -39,4 +39,8 @@ public class XTSRules {
     public static boolean betterArmorTrims() {
         return (boolean) XTSExtensionServer.settingsManager().getCarpetRule("betterArmorTrims").value();
     }
+
+    public static boolean reloadServerProperties() {
+        return (boolean) XTSExtensionServer.settingsManager().getCarpetRule("reloadServerProperties").value();
+    }
 }

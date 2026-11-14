@@ -38,4 +38,9 @@ public class XTSSettings {
             categories = {RuleCategory.SURVIVAL, XTS}
     )
     public static boolean betterArmorTrims = false;
+
+    @Rule(
+            categories = {RuleCategory.COMMAND, RuleCategory.FEATURE, XTS}
+    )
+    public static boolean reloadServerProperties = false;
 }
