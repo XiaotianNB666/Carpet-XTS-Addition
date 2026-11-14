@@ -31,14 +31,17 @@
 
 ## 规则速查 / Quick Reference
 
-| Rule                          | 中文名       | 类型      | 默认      | 分类                    |
-|-------------------------------|-----------|---------|---------|-----------------------|
-| `creativeFlight`              | 创造模式飞行    | boolean | `false` | `XTS`, `SURVIVAL`     |
-| `creativeFlightFuelBase`      | 创造飞行燃料基数  | int     | `10`    | `XTS`, `SURVIVAL`     |
-| `creativeFlightFallHasDamage` | 飞行结束摔落有伤害 | boolean | `true`  | `XTS`, `SURVIVAL`     |
-| `fakePlayerControl`           | 假人操控      | String  | `false` | `XTS`, `EXPERIMENTAL` |
-| `tpCommandCollection`         | TP 指令集合   | String  | `false` | `XTS`, `COMMAND`      |
-| `betterArmorTrims`            | 更好的纹饰     | boolean | `false` | `XTS`, `SURVIVAL`     |
+| Rule                          | 中文名         | 类型      | 默认      | 分类                          |
+|-------------------------------|-------------|---------|---------|-----------------------------|
+| `creativeFlight`              | 创造模式飞行      | boolean | `false` | `XTS`, `SURVIVAL`           |
+| `creativeFlightFuelBase`      | 创造飞行燃料基数    | int     | `10`    | `XTS`, `SURVIVAL`           |
+| `creativeFlightFallHasDamage` | 飞行结束摔落有伤害   | boolean | `true`  | `XTS`, `SURVIVAL`           |
+| `fakePlayerControl`           | 假人操控        | String  | `false` | `XTS`, `EXPERIMENTAL`       |
+| `tpCommandCollection`         | TP 指令集合     | String  | `false` | `XTS`, `COMMAND`            |
+| `betterArmorTrims`            | 更好的纹饰       | boolean | `false` | `XTS`, `SURVIVAL`           |
+| `reloadServerProperties`      | 重载命令重载服务器配置 | boolean | `false` | `XTS`, `COMMAND`, `FEATURE` |
+| `restartServerCommand`        | 重启服务器命令     | String  | `false` | `XTS`, `COMMAND`            |
+| `restartServerScriptPath`     | 重启服务器脚本路径   | String  | `none`  | `XTS`                       |
 
 详细语义、选项与坑点见上方文档链接。
 See the docs above for full semantics, options and caveats.

@@ -11,6 +11,8 @@
   "carpet.rule.tpCommandCollection.name": "TP 命令集",
   "carpet.rule.betterArmorTrims.name": "更好的纹饰",
   "carpet.rule.betterArmorTrims.desc": "Make armor trims great again.\n当纹饰材料为金时，猪灵不会攻击玩家",
+  "carpet.rule.reloadServerProperties.name": "重载命令重载服务器配置",
+  "carpet.rule.reloadServerProperties.desc": "使用'/reload'命令能重载'server.properties'中多数配置",
   "carpet.rule.restartServerCommand.name": "重启服务器命令",
   "carpet.rule.restartServerCommand.desc": "加入'/restart'命令.\n只在独立服务器有效.",
   "carpet.rule.restartServerScriptPath.name": "重启服务器脚本路径",

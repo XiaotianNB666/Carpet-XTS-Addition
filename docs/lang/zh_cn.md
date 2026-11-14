@@ -12,6 +12,7 @@
 | `SURVIVAL`     | 生存玩法向，会改变生存模式下的可操作边界       |
 | `COMMAND`      | 指令添加，给Minecraft增加指令        |
 | `EXPERIMENTAL` | 实验性特性，语义与实现可能随版本调整，生产服请先测试 |
+| `FEATURE`      | 游戏特性                       |
 
 ---
 
@@ -69,10 +70,6 @@
 
 控制玩家是否能操控假人。
 
-支持两种写法：
-
-- **权限等级**：填 `0` / `1` / `2` / `3` / `4` / `ops`，只有权限等级 ≥ 该值的玩家可以操控假人
-
 #### 开启后
 
 `/player <player> control`可以控制假人（真人玩家控制有一点问题）
@@ -105,3 +102,40 @@
 - 默认值：`true`
 - 选项：`false`，`true`
 - 分类：`XTS`，`SURVIVAL`
+
+---
+
+### (重载命令重载服务器配置) `reloadServerProperties`
+
+使用`/reload`命令能重载`server.properties`中多数配置
+
+- 类型：`boolean`
+- 默认值：`true`
+- 选项：`false`，`true`
+- 分类：`XTS`，`COMMAND`，`FEATURE`
+
+---
+
+### (重启服务器命令) `restartServerCommand`
+
+加入`/restart`命令。
+
+只在独立服务器有效。
+
+- 类型：`String`
+- 默认值：`false`
+- 选项：`false`，`0`，`1`，`2`，`3`，`4`，`ops`
+- 分类：`XTS`，`COMMAND`
+
+---
+
+### (重启服务器脚本路径) `restartServerScriptPath`
+
+重启脚本的路径。
+
+警告：请确保这里填写的脚本路径是**可信的**！
+
+- 类型：`String`
+- 默认值：`none`
+- 选项：`none`
+- 分类：`XTS`
