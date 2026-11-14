@@ -75,7 +75,8 @@ public class XTSExtensionServer implements CarpetExtension {
         if (XTSRules.reloadServerProperties()) {
             ServerPropertiesHotReload.reload(server);
         }
-    
+    }
+
     public void onServerClosed(MinecraftServer server) {
         RestartManager.shutdown();
     }

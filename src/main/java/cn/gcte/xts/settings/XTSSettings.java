@@ -43,6 +43,8 @@ public class XTSSettings {
             categories = {RuleCategory.COMMAND, RuleCategory.FEATURE, XTS}
     )
     public static boolean reloadServerProperties = false;
+
+    @Rule(
             categories = {RuleCategory.COMMAND, XTS},
             options = {"0", "1", "2", "3", "4", "ops", "false"}
     )
