@@ -12,6 +12,7 @@
 | `SURVIVAL`     | Gameplay-facing; expands what is possible in Survival mode                                              |
 | `COMMAND`      | Command; add commands to Minecraft                                                                      |
 | `EXPERIMENTAL` | Experimental; semantics and implementation may change between versions — test on a staging server first |
+| `FEATURE`      | New Feature; add some new features to Minecraft                                                         |
 
 ---
 
@@ -72,11 +73,6 @@ Best used together with `creativeFlight`.
 
 Controls who is allowed to control fake players.
 
-Two forms of input are accepted:
-
-- **Permission level**: set to `0` / `1` / `2` / `3` / `4` / `ops` — only players whose permission level is **at least**
-  the configured value may control fake players
-
 #### When enabled
 
 `/player <player> control` lets you take control of a fake player (real-player control has some issues).
@@ -92,10 +88,10 @@ Two forms of input are accepted:
 
 Enable tp-related commands like `/tpa` `/home` `/sethome` `/delhome` `/back` *(Maybe completed)*
 
-- Type：`String`
-- Default：`false`
-- Options：`false`，`0`，`1`，`2`，`3`，`4`，`ops`
-- Categories：`XTS`，`COMMAND`
+- Type: `String`
+- Default: `false`
+- Options: `false`, `0`, `1`, `2`, `3`, `4`, `ops`
+- Categories: `XTS`, `COMMAND`
 
 ---
 
@@ -109,3 +105,40 @@ Piglins will not attack players wearing **gold-trimmed** armor.
 - Default: `true`
 - Options: `false`, `true`
 - Categories: `XTS`, `SURVIVAL`
+
+---
+
+### (Reload Command Reload Server Properties) `reloadServerProperties`
+
+Using '/reload' command can reload most of the properties in 'server.properties'.
+
+- Type: `boolean`
+- Default: `true`
+- Options: `false`, `true`
+- Categories: `XTS`, `COMMAND`, `FEATURE`
+
+---
+
+### (Restart Server Command) `restartServerCommand`
+
+Add '/restart' command.
+
+Only works in dedicated server.
+
+- Type: `String`
+- Default: `false`
+- Options: `false`, `0`, `1`, `2`, `3`, `4`, `ops`
+- Categories: `XTS`, `COMMAND`
+
+---
+
+### (Restart Server Script Path) `restartServerScriptPath`
+
+Path to the restart script.
+
+Warning: Make sure the script path you enter here is **TRUSTWORTHY**!
+
+- Type: `String`
+- Default: `none`
+- Options: `none`
+- Categories: `XTS`

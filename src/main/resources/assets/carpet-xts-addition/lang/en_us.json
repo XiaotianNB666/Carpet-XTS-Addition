@@ -12,7 +12,7 @@
   "carpet.rule.betterArmorTrims.name": "Better Armor Trims",
   "carpet.rule.betterArmorTrims.desc": "Make armor trims great again.\nPiglins will not attack players wearing gold-trimmed armor.",
   "carpet.rule.reloadServerProperties.name": "Reload Command Reload Server Properties",
-  "carpet.rule.reloadServerProperties.desc": "Using '/reload' command can reload most of properties in 'server.properties'.",
+  "carpet.rule.reloadServerProperties.desc": "Using '/reload' command can reload most of the properties in 'server.properties'.",
   "carpet.rule.restartServerCommand.name": "Restart Server Command",
   "carpet.rule.restartServerCommand.desc": "Add '/restart' command.\nOnly works in dedicated server.",
   "carpet.rule.restartServerScriptPath.name": "Restart Server Script Path",
