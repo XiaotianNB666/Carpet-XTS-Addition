@@ -5,6 +5,7 @@
   "mixins": [
     "DedicatedServerAccessor",
     "DedicatedServerSettingsMixin",
+    "ServerAccessor",
     "armortrim.PiglinAIMixin",
     "creativefight.ServerPlayerMixin",
     "playercontrol.PlayerAccessor",

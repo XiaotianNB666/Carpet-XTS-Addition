@@ -6,6 +6,8 @@ import carpet.api.settings.SettingsManager;
 import carpet.utils.Translations;
 import cn.gcte.xts.features.playercontrol.PlayerControl;
 import cn.gcte.xts.features.properties.ServerPropertiesHotReload;
+import cn.gcte.xts.features.restart.RestartCommand;
+import cn.gcte.xts.features.restart.RestartManager;
 import cn.gcte.xts.features.tpcollection.HomeManager;
 import cn.gcte.xts.features.tpcollection.TPCollection;
 import cn.gcte.xts.rules.XTSRuleRegistrar;
@@ -55,6 +57,7 @@ public class XTSExtensionServer implements CarpetExtension {
     public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, final CommandBuildContext commandBuildContext) {
         PlayerControl.registerCommand(dispatcher, commandBuildContext);
         TPCollection.registerCommands(dispatcher, commandBuildContext);
+        RestartCommand.register(dispatcher, commandBuildContext);
     }
 
     @Override
@@ -72,5 +75,8 @@ public class XTSExtensionServer implements CarpetExtension {
         if (XTSRules.reloadServerProperties()) {
             ServerPropertiesHotReload.reload(server);
         }
+    
+    public void onServerClosed(MinecraftServer server) {
+        RestartManager.shutdown();
     }
 }

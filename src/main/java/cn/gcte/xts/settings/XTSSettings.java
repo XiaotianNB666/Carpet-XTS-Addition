@@ -43,4 +43,16 @@ public class XTSSettings {
             categories = {RuleCategory.COMMAND, RuleCategory.FEATURE, XTS}
     )
     public static boolean reloadServerProperties = false;
+            categories = {RuleCategory.COMMAND, XTS},
+            options = {"0", "1", "2", "3", "4", "ops", "false"}
+    )
+    public static String restartServerCommand = "false";
+
+    @Rule(
+            categories = {XTS},
+            options = {"none"},
+            strict = false
+    )
+    public static String restartServerScriptPath = "none";
+
 }

@@ -2,6 +2,8 @@ package cn.gcte.xts.rules;
 
 import cn.gcte.xts.XTSExtensionServer;
 import cn.gcte.xts.compat.Permission;
+import net.minecraft.server.MinecraftServer;
+import org.jetbrains.annotations.NotNull;
 
 public class XTSRules {
     public static boolean creativeFlight() {
@@ -42,5 +44,26 @@ public class XTSRules {
 
     public static boolean reloadServerProperties() {
         return (boolean) XTSExtensionServer.settingsManager().getCarpetRule("reloadServerProperties").value();
+    
+    private static boolean enabledRestartServerCommand() {
+        String value = (String) XTSExtensionServer.settingsManager().getCarpetRule("restartServerCommand").value();
+        return !value.equalsIgnoreCase("false");
+    }
+
+    public static boolean enabledRestartServerCommand(@NotNull MinecraftServer server) {
+        return server.isDedicatedServer() && enabledRestartServerCommand();
+    }
+
+    public static int restartServerCommandLevel() {
+        String value = (String) XTSExtensionServer.settingsManager().getCarpetRule("restartServerCommand").value();
+        return Permission.parsePermission(value);
+    }
+
+    public static boolean hasRestartScriptPath() {
+        return !restartServerScriptPath().equalsIgnoreCase("none");
+    }
+
+    public static String restartServerScriptPath() {
+        return (String) XTSExtensionServer.settingsManager().getCarpetRule("restartServerScriptPath").value();
     }
 }
