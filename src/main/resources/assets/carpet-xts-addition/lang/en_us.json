@@ -11,6 +11,10 @@
   "carpet.rule.tpCommandCollection.name": "TP Command Collection",
   "carpet.rule.betterArmorTrims.name": "Better Armor Trims",
   "carpet.rule.betterArmorTrims.desc": "Make armor trims great again.\nPiglins will not attack players wearing gold-trimmed armor.",
+  "carpet.rule.restartServerCommand.name": "Restart Server Command",
+  "carpet.rule.restartServerCommand.desc": "Add '/restart' command.\nOnly works in dedicated server.",
+  "carpet.rule.restartServerScriptPath.name": "Restart Server Script Path",
+  "carpet.rule.restartServerScriptPath.desc": "Path to the restart script.\nWarning: Make sure the script path you enter here is TRUSTWORTHY!",
   "carpet.category.XTS": "XTS",
 
   "xts.player.control.error.self_swap": "Can't swap with yourself!",
@@ -45,5 +49,30 @@
   "xts.home.teleport_success": "Teleported to home.",
   "xts.home.deleted": "Home deleted.",
 
-  "xts.back.no_position": "Last position not recorded yet."
+  "xts.back.no_position": "Last position not recorded yet.",
+
+  "xts.restart.dedicated_only": "Restart can only be used on a dedicated server",
+  "xts.restart.already_scheduled": "A restart is already scheduled (use /restart cancel)",
+  "xts.restart.no_script_found": "restartScriptPath '%s' not found, aborting relaunch",
+  "xts.restart.failed_launch": "Failed to launch restart script",
+  "xts.restart.marker_write_failed": "Could not write restart marker",
+
+  "xts.restart.scheduled_in": "Server restart in %s (%s) at %s",
+  "xts.restart.scheduled_at": "Server restart scheduled at %s (%s)",
+  "xts.restart.script": "script=%s",
+  "xts.restart.stop_only": "stop only",
+  "xts.restart.now": "Restarting Server now...",
+  "xts.restart.starting": "Initiating clean shutdown for restart",
+
+  "xts.restart.cancelled": "Scheduled restart cancelled",
+  "xts.restart.cancel_none": "No restart is scheduled",
+
+  "xts.restart.command_disabled": "/restart is disabled by rule restartCommand",
+  "xts.restart.invalid_time": "Invalid time: %s",
+  "xts.restart.usage": "Usage: /restart [in <duration> | at <yyyy-MM-dd> [HH:mm[:ss]] | cancel]",
+
+  "xts.restart.no_schedule": "No restart scheduled",
+  "xts.restart.status": "Restart scheduled at %s (in %s)",
+
+  "xts.restart.failed_cancel": "Failed to cancel the scheduled restart."
 }

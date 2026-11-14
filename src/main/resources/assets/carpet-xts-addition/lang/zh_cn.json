@@ -11,6 +11,10 @@
   "carpet.rule.tpCommandCollection.name": "TP 命令集",
   "carpet.rule.betterArmorTrims.name": "更好的纹饰",
   "carpet.rule.betterArmorTrims.desc": "Make armor trims great again.\n当纹饰材料为金时，猪灵不会攻击玩家",
+  "carpet.rule.restartServerCommand.name": "重启服务器命令",
+  "carpet.rule.restartServerCommand.desc": "加入'/restart'命令.\n只在独立服务器有效.",
+  "carpet.rule.restartServerScriptPath.name": "重启服务器脚本路径",
+  "carpet.rule.restartServerScriptPath.desc": "重启脚本的路径。\n警告：请确保这里填写的脚本路径是可信的！",
   "carpet.category.XTS": "XTS 扩展",
 
   "xts.player.control.error.self_swap": "不能与自己交换！",
@@ -46,5 +50,26 @@
   "xts.home.teleport_success": "已传送到 home。",
   "xts.home.deleted": "已删除 home。",
 
-  "xts.back.no_position": "尚未记录上次位置"
+  "xts.back.no_position": "尚未记录上次位置",
+
+  "xts.restart.dedicated_only": "重启命令只能在独立服务器上使用",
+  "xts.restart.already_scheduled": "已有重启计划（使用 /restart cancel 取消）",
+  "xts.restart.no_script_found": "未找到 启动脚本 '%s'，放弃重新启动",
+  "xts.restart.failed_launch": "启动重启脚本失败",
+  "xts.restart.marker_write_failed": "无法写入重启标记文件",
+
+  "xts.restart.scheduled_in": "服务器将于 %s 后重启（%s），时间 %s",
+  "xts.restart.scheduled_at": "服务器计划于 %s 重启（%s）",
+  "xts.restart.script": "脚本=%s",
+  "xts.restart.stop_only": "仅停止",
+  "xts.restart.now": "正在重启服务器",
+  "xts.restart.starting": "开始准备重启",
+
+  "xts.restart.cancelled": "已取消计划重启",
+  "xts.restart.cancel_none": "当前没有计划中的重启",
+
+  "xts.restart.command_disabled": "/restart 已被规则 restartCommand 禁用",
+  "xts.restart.invalid_time": "无效的时间：%s",
+  "xts.restart.usage": "用法：/restart [in <时长> | at <yyyy-MM-dd> [HH:mm[:ss]] | cancel]",
+  "xts.restart.failed_cancel": "无法取消计划重启"
 }

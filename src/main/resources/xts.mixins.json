@@ -3,6 +3,7 @@
   "package": "cn.gcte.xts.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "ServerAccessor",
     "armortrim.PiglinAIMixin",
     "creativefight.ServerPlayerMixin",
     "playercontrol.PlayerAccessor",
